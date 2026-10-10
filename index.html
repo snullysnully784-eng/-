@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>سەعی بۆ سامانە سێکسی</title>
+    <title>پرسیارەکانی سامانی دییە</title>۱</title>
     
     <!-- MathJax Config -->
     <script>
@@ -38,17 +38,23 @@
             border-bottom: 2px solid #3498db;
             padding-bottom: 10px;
         }
+        .subtitle {
+            text-align: center;
+            color: #64748b;
+            margin-bottom: 30px;
+        }
         .question {
-            margin-bottom: 25px;
+            margin-bottom: 30px;
             padding: 20px;
             border-right: 5px solid #3498db;
             background: #f8fafc;
-            border-radius: 6px;
+            border-radius: 8px;
         }
         .question-title {
             font-weight: bold;
             font-size: 1.1em;
-            margin-bottom: 12px;
+            margin-bottom: 15px;
+            line-height: 1.6;
         }
         .options label {
             display: block;
@@ -64,30 +70,52 @@
             background: #e0f2fe;
             border-color: #38bdf8;
         }
-        .btn-submit {
+        .btn-next {
+            display: inline-block;
+            margin-top: 12px;
+            padding: 10px 20px;
+            background-color: #0284c7;
+            color: white;
+            font-size: 0.95em;
+            font-weight: bold;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .btn-next:hover {
+            background-color: #0369a1;
+        }
+        .solution {
+            display: none;
+            margin-top: 15px;
+            padding: 15px;
+            background-color: #f0fdf4;
+            border: 1px solid #86efac;
+            border-radius: 8px;
+            color: #166534;
+            line-height: 1.6;
+        }
+        .correct-ans {
+            font-weight: bold;
+            color: #15803d;
+            margin-bottom: 5px;
+        }
+        .btn-finish {
             display: block;
             width: 100%;
             padding: 15px;
-            background-color: #2563eb;
+            background-color: #16a34a;
             color: white;
             font-size: 1.2em;
             font-weight: bold;
             border: none;
             border-radius: 8px;
             cursor: pointer;
-            margin-top: 20px;
+            margin-top: 25px;
         }
-        .btn-submit:hover {
-            background-color: #1d4ed8;
-        }
-        .solution {
-            display: none;
-            margin-top: 15px;
-            padding: 12px;
-            background-color: #f0fdf4;
-            border: 1px solid #86efac;
-            border-radius: 6px;
-            color: #166534;
+        .btn-finish:hover {
+            background-color: #15803d;
         }
         #result-box {
             display: none;
@@ -105,147 +133,208 @@
 <body>
 
 <div class="container">
-    <h1>📝 تاقیکردنەوەی ئاستی بەرزی بیرکاری</h1>
+    <h1>📝 تاقیکردنەوەی بیرکاری - بەشی یەکەم</h1>
+    <div class="subtitle">بابەتەکان: کێشانی وێنەی نەخشەکان، یەکتربڕین لەگەڵ تەوەرەکان، هاوجێبوون، دۆزینەوەی خاڵەکان</div>
+    
     <div id="result-box"></div>
 
     <form id="quizForm">
         <!-- Q1 -->
         <div class="question">
-            <div class="question-title">١. جۆری هاوجێبوونی نەخشەی $f(x) = \frac{x \cdot \vert{}x\vert{}}{x^2 + 1}$ دیاری بکە:</div>
+            <div class="question-title">١. (هاوجێبوون) جۆری هاوجێبوونی نەخشەی $f(x) = \frac{x \cdot |x|}{x^2 + 1}$ دیاری بکە:</div>
             <div class="options">
                 <label><input type="radio" name="q1" value="A"> A) نەخشەیەکی جووتە</label>
                 <label><input type="radio" name="q1" value="B"> B) نەخشەیەکی تاکە</label>
                 <label><input type="radio" name="q1" value="C"> C) نە هاوجێیە و نە ناهاوجێ</label>
                 <label><input type="radio" name="q1" value="D"> D) هاوجێیە بە دەوری تەوەرێکدا</label>
             </div>
-            <div class="solution" id="sol-q1">💡 <b>شیکاری:</b> نەخشەکە تاکە، چونکە $f(-x) = \frac{(-x)\vert{}-x\vert{}}{(-x)^2+1} = \frac{-x\vert{}x\vert{}}{x^2+1} = -f(x)$.</div>
+            <button type="button" class="btn-next" onclick="toggleSolution('q1')">دواتر (بینینی شیکار و وەڵام)</button>
+            <div class="solution" id="sol-q1">
+                <div class="correct-ans">✅ وەڵامی ڕاست: B) نەخشەیەکی تاکە</div>
+                💡 <b>شیکاری:</b> تاقیکردنەوە بە $f(-x)$ دەکەین: <br>
+                $f(-x) = \frac{(-x)|-x|}{(-x)^2 + 1} = \frac{-x|x|}{x^2 + 1} = -f(x)$. <br>
+                چونکە $f(-x) = -f(x)$ ەیە، کەواتە نەخشەکە تاکە.
+            </div>
         </div>
 
         <!-- Q2 -->
         <div class="question">
-            <div class="question-title">٢. ژمارەی خاڵەکانی یەکتربڕینی ئاسۆیی ($x$) بۆ نەخشەی $f(x) = (x^2 - 4)\sqrt{x - 1}$ چەندە؟</div>
+            <div class="question-title">٢. (دۆزینەوەی خاڵ) ژمارەی خاڵەکانی یەکتربڕینی ئاسۆیی ($x$) بۆ نەخشەی $f(x) = (x^2 - 4)\sqrt{x - 1}$ چەندە؟</div>
             <div class="options">
                 <label><input type="radio" name="q2" value="A"> A) ۳ خاڵ: $(2,0), (-2,0), (1,0)$</label>
                 <label><input type="radio" name="q2" value="B"> B) ۲ خاڵ: $(2,0), (1,0)$</label>
                 <label><input type="radio" name="q2" value="C"> C) ۱ خاڵ: $(2,0)$</label>
                 <label><input type="radio" name="q2" value="D"> D) هیچ خاڵێک</label>
             </div>
-            <div class="solution" id="sol-q2">💡 <b>شیکاری:</b> بواری نەخشەکە $x \ge 1$ ەیە. بە دانانی $f(x)=0$ ڕەگەکانی $x=2, x=-2, x=1$ دەبن، بەڵام $x=-2$ لە بواردا نییە، کەواتە تەنها ۲ خاڵ هەن.</div>
+            <button type="button" class="btn-next" onclick="toggleSolution('q2')">دواتر (بینینی شیکار و وەڵام)</button>
+            <div class="solution" id="sol-q2">
+                <div class="correct-ans">✅ وەڵامی ڕاست: B) ۲ خاڵ: $(2,0), (1,0)$</div>
+                💡 <b>شیکاری:</b> سەرەتا بواری نەخشەکە $x \ge 1$ ەیە. <br>
+                بە دانانی $f(x) = 0$: $x^2 - 4 = 0 \Rightarrow x = \pm 2$ وە $\sqrt{x-1} = 0 \Rightarrow x = 1$. <br>
+                بەڵام $x = -2$ لە ناو بواردا نییە و ڕەت دەکرێتەوە. کەواتە تەنها ۲ خاڵ دەمێننەوە.
+            </div>
         </div>
 
         <!-- Q3 -->
         <div class="question">
-            <div class="question-title">٣. بەهای سنووری $\lim_{x \to 0} \frac{1 - \cos(x)}{x^2}$ چەندە؟</div>
+            <div class="question-title">٣. (یەکتربڕین لەگەڵ تەوەرەکان) خاڵی یەکتربڕینی ئەستوونی ($y$) بۆ نەخشەی $f(x) = \frac{x^2 - 9}{x + 3}$ بریتییە لە:</div>
             <div class="options">
-                <label><input type="radio" name="q3" value="A"> A) $0$</label>
-                <label><input type="radio" name="q3" value="B"> B) $1$</label>
-                <label><input type="radio" name="q3" value="C"> C) $\frac{1}{2}$</label>
-                <label><input type="radio" name="q3" value="D"> D) بوونی نییە</label>
+                <label><input type="radio" name="q3" value="A"> A) $(0, -3)$</label>
+                <label><input type="radio" name="q3" value="B"> B) $(0, 3)$</label>
+                <label><input type="radio" name="q3" value="C"> C) $(0, 0)$</label>
+                <label><input type="radio" name="q3" value="D"> D) بوونی نییە چونکە ژێر کەرت صفر دەکات</label>
             </div>
-            <div class="solution" id="sol-q3">💡 <b>شیکاری:</b> بە بەکارهێنانی یاسای لۆپیتال یان لێکدانی هاوبەش: $\lim_{x \to 0} \frac{\sin x}{2x} = \frac{1}{2}$.</div>
+            <button type="button" class="btn-next" onclick="toggleSolution('q3')">دواتر (بینینی شیکار و وەڵام)</button>
+            <div class="solution" id="sol-q3">
+                <div class="correct-ans">✅ وەڵامی ڕاست: A) $(0, -3)$</div>
+                💡 <b>شیکاری:</b> بۆ دۆزینەوەی یەکتربڕین لەگەڵ تەوەری $y$، بەهای $x = 0$ دادەنێین: <br>
+                $f(0) = \frac{0^2 - 9}{0 + 3} = \frac{-9}{3} = -3$. کەواتە خاڵەکە بریتییە لە $(0, -3)$.
+            </div>
         </div>
 
         <!-- Q4 -->
         <div class="question">
-            <div class="question-title">٤. داتاشراوی نەخشەی $f(x) = \ln(\sin(x))$ بریتییە لە:</div>
+            <div class="question-title">٤. (کێشانی وێنەی نەخشەکان) ڕوونکردنەوەی نەخشەی $g(x) = |x - 3| + 2$ بەبەراورد لەگەڵ $f(x) = |x|$ چۆن دەگوازرێتەوە؟</div>
             <div class="options">
-                <label><input type="radio" name="q4" value="A"> A) $\cot(x)$</label>
-                <label><input type="radio" name="q4" value="B"> B) $\tan(x)$</label>
-                <label><input type="radio" name="q4" value="C"> C) $\frac{1}{\sin(x)}$</label>
-                <label><input type="radio" name="q4" value="D"> D) $\cos(x)$</label>
+                <label><input type="radio" name="q4" value="A"> A) ۳ یەکە بۆ لای چەپ و ۲ یەکە بۆ سەرەوە</label>
+                <label><input type="radio" name="q4" value="B"> B) ۳ یەکە بۆ لای ڕاست و ۲ یەکە بۆ سەرەوە</label>
+                <label><input type="radio" name="q4" value="C"> C) ۳ یەکە بۆ لای ڕاست و ۲ یەکە بۆ خوارەوە</label>
+                <label><input type="radio" name="q4" value="D"> D) ۳ یەکە بۆ لای چەپ و ۲ یەکە بۆ خوارەوە</label>
             </div>
-            <div class="solution" id="sol-q4">💡 <b>شیکاری:</b> $f'(x) = \frac{(\sin x)'}{\sin x} = \frac{\cos x}{\sin x} = \cot(x)$.</div>
+            <button type="button" class="btn-next" onclick="toggleSolution('q4')">دواتر (بینینی شیکار و وەڵام)</button>
+            <div class="solution" id="sol-q4">
+                <div class="correct-ans">✅ وەڵامی ڕاست: B) ۳ یەکە بۆ لای ڕاست و ۲ یەکە بۆ سەرەوە</div>
+                💡 <b>شیکاری:</b> گۆڕانی ئاسۆیی: $|x - 3|$ واتە ۳ یەکە بۆ ڕاست. گۆڕانی ئەستوونی: $+ 2$ واتە ۲ یەکە بەرەو سەرەوە.
+            </div>
         </div>
 
         <!-- Q5 -->
         <div class="question">
-            <div class="question-title">٥. هاوکێشەی بڕگەی هاوڕێ (Hyperbola) کە ناوەندەکەی $(0,0)$ بێت و دوو سەری لە $(\pm 3, 0)$ و دوو تیشکی لە $(\pm 5, 0)$ بێت بریتییە لە:</div>
+            <div class="question-title">٥. (هاوجێبوون) نەخشەی $f(x) = x^4 - 3x^2 + 5$ هاوجێیە بە دەوری چی؟</div>
             <div class="options">
-                <label><input type="radio" name="q5" value="A"> A) $\frac{x^2}{9} - \frac{y^2}{16} = 1$</label>
-                <label><input type="radio" name="q5" value="B"> B) $\frac{x^2}{16} - \frac{y^2}{9} = 1$</label>
-                <label><input type="radio" name="q5" value="C"> C) $\frac{y^2}{9} - \frac{x^2}{16} = 1$</label>
-                <label><input type="radio" name="q5" value="D"> D) $\frac{x^2}{25} - \frac{y^2}{9} = 1$</label>
+                <label><input type="radio" name="q5" value="A"> A) دەوری بنەڕەتی ئۆریجن $(0,0)$</label>
+                <label><input type="radio" name="q5" value="B"> B) دەوری تەوەری $x$</label>
+                <label><input type="radio" name="q5" value="C"> C) دەوری تەوەری $y$</label>
+                <label><input type="radio" name="q5" value="D"> D) هیچ هاوجێبوونی نییە</label>
             </div>
-            <div class="solution" id="sol-q5">💡 <b>شیکاری:</b> $a=3 \Rightarrow a^2=9$ و $c=5 \Rightarrow c^2=25$. بەپێی $c^2 = a^2 + b^2$ واتە $b^2 = 16$. کەواتە $\frac{x^2}{9} - \frac{y^2}{16} = 1$.</div>
+            <button type="button" class="btn-next" onclick="toggleSolution('q5')">دواتر (بینینی شیکار و وەڵام)</button>
+            <div class="solution" id="sol-q5">
+                <div class="correct-ans">✅ وەڵامی ڕاست: C) دەوری تەوەری $y$</div>
+                💡 <b>شیکاری:</b> نەخشەکە جووتە چونکە تەواوی تواناکانی جۆری جووتن ($4, 2, 0$). هەموو نەخشەیەکی جووت هاوجێیە بە دەوری تەوەری $y$.
+            </div>
         </div>
 
         <!-- Q6 -->
         <div class="question">
-            <div class="question-title">٦. ناپچڕاوی لە جۆری لادراو (Removable Discontinuity) بۆ نەخشەی $f(x) = \frac{x^2 - 9}{x - 3}$ لە چ خاڵێکدایە؟</div>
+            <div class="question-title">٦. (دۆزینەوەی خاڵ) خاڵەکانی یەکتربڕینی دوو نەخشەی $f(x) = x^2$ و $g(x) = 2x + 3$ برێتین لە:</div>
             <div class="options">
-                <label><input type="radio" name="q6" value="A"> A) $x = -3$</label>
-                <label><input type="radio" name="q6" value="B"> B) $x = 3$</label>
-                <label><input type="radio" name="q6" value="C"> C) $x = 0$</label>
-                <label><input type="radio" name="q6" value="D"> D) هیچ ناکۆتا کێشەیەک نییە</label>
+                <label><input type="radio" name="q6" value="A"> A) $(3, 9)$ و $(-1, 1)$</label>
+                <label><input type="radio" name="q6" value="B"> B) $(-3, 9)$ و $(1, 1)$</label>
+                <label><input type="radio" name="q6" value="C"> C) $(3, 6)$ و $(-1, -2)$</label>
+                <label><input type="radio" name="q6" value="D"> D) $(2, 4)$ و $(0, 0)$</label>
             </div>
-            <div class="solution" id="sol-q6">💡 <b>شیکاری:</b> کاتێک $x=3$ بێت ژێر کەرتی سفر دەکات، بەڵام کاتێک بەش دەکەیت $f(x)=x+3$ دەبێت و سنوورەکەی بوونی هەیە، بۆیە ناپچڕاوی لادراوە.</div>
+            <button type="button" class="btn-next" onclick="toggleSolution('q6')">دواتر (بینینی شیکار و وەڵام)</button>
+            <div class="solution" id="sol-q6">
+                <div class="correct-ans">✅ وەڵامی ڕاست: A) $(3, 9)$ و $(-1, 1)$</div>
+                💡 <b>شیکاری:</b> هەردوو نەخشە یەکسان دەکەین: $x^2 = 2x + 3 \Rightarrow x^2 - 2x - 3 = 0$. <br>
+                شیکار بە شیکردنەوە: $(x - 3)(x + 1) = 0 \Rightarrow x = 3$ یان $x = -1$. <br>
+                بە دانانی بەهاکان: $f(3) = 9$ و $f(-1) = 1$.
+            </div>
         </div>
 
         <!-- Q7 -->
         <div class="question">
-            <div class="question-title">٧. هاوکێشەی درێژەهێڵی لێکەوت (Tangent Line) بۆ $y = x^3$ لە خاڵی $(1,1)$ بریتییە لە:</div>
+            <div class="question-title">٧. (کێشانی وێنەی نەخشەکان) ئەگەر وێنەی نەخشەی $f(x) = \sqrt{x}$ ئاوێنە بکرێتەوە بە دەوری تەوەری $x$ دا و دواتر ۱ یەکە ببڕێتە خوارەوە، هاوکێشە نوێیەکە چییە؟</div>
             <div class="options">
-                <label><input type="radio" name="q7" value="A"> A) $y = 3x - 2$</label>
-                <label><input type="radio" name="q7" value="B"> B) $y = 3x + 2$</label>
-                <label><input type="radio" name="q7" value="C"> C) $y = x + 2$</label>
-                <label><input type="radio" name="q7" value="D"> D) $y = 3x$</label>
+                <label><input type="radio" name="q7" value="A"> A) $g(x) = \sqrt{-x} - 1$</label>
+                <label><input type="radio" name="q7" value="B"> B) $g(x) = -\sqrt{x} - 1$</label>
+                <label><input type="radio" name="q7" value="C"> C) $g(x) = -\sqrt{x - 1}$</label>
+                <label><input type="radio" name="q7" value="D"> D) $g(x) = \sqrt{x + 1}$</label>
             </div>
-            <div class="solution" id="sol-q7">💡 <b>شیکاری:</b> لاری $m = y' = 3x^2 \Rightarrow m = 3(1)^2 = 3$. هاوکێشە: $y - 1 = 3(x - 1) \Rightarrow y = 3x - 2$.</div>
+            <button type="button" class="btn-next" onclick="toggleSolution('q7')">دواتر (بینینی شیکار و وەڵام)</button>
+            <div class="solution" id="sol-q7">
+                <div class="correct-ans">✅ وەڵامی ڕاست: B) $g(x) = -\sqrt{x} - 1$</div>
+                💡 <b>شیکاری:</b> ئاوێنەکردنەوە بە دەوری تەوەری $x$ نیشانەی منفی لە دەرەوەی نەخشەکە دادەنێت ($-\sqrt{x}$). دواتر ۱ یەکە دابەزین بۆ خوارەوە $- 1$ دەبێت.
+            </div>
         </div>
 
         <!-- Q8 -->
         <div class="question">
-            <div class="question-title">٨. بەهای لاربوونی بڕگەی هاوڕێ (Eccentricity - $e$) بەپێی بڕگەکان هەمیشە چۆنە؟</div>
+            <div class="question-title">٨. (یەکتربڕین لەگەڵ تەوەرەکان) نەخشەی $f(x) = \frac{x^2 + 1}{x - 2}$ لە چ خاڵێکدا تەوەری $x$ دەبڕێت؟</div>
             <div class="options">
-                <label><input type="radio" name="q8" value="A"> A) $e = 1$</label>
-                <label><input type="radio" name="q8" value="B"> B) $e < 1$</label>
-                <label><input type="radio" name="q8" value="C"> C) $e > 1$</label>
-                <label><input type="radio" name="q8" value="D"> D) $e = 0$</label>
+                <label><input type="radio" name="q8" value="A"> A) $(1, 0)$ و $(-1, 0)$</label>
+                <label><input type="radio" name="q8" value="B"> B) $(2, 0)$</label>
+                <label><input type="radio" name="q8" value="C"> C) $(0, -0.5)$</label>
+                <label><input type="radio" name="q8" value="D"> هیچ خاڵێکی یەکتربڕینی لەگەڵ تەوەری $x$ نییە</label>
             </div>
-            <div class="solution" id="sol-q8">💡 <b>شیکاری:</b> بۆ بڕگەی هاوڕێ (Hyperbola) هەمیشە $e = \frac{c}{a} > 1$ چونکە $c > a$.</div>
+            <button type="button" class="btn-next" onclick="toggleSolution('q8')">دواتر (بینینی شیکار و وەڵام)</button>
+            <div class="solution" id="sol-q8">
+                <div class="correct-ans">✅ وەڵامی ڕاست: D) هیچ خاڵێکی یەکتربڕینی لەگەڵ تەوەری $x$ نییە</div>
+                💡 <b>شیکاری:</b> بۆ تەوەری $x$ دەبێت بەشی سەرەوە یەکسان بێت بە صفر: $x^2 + 1 = 0 \Rightarrow x^2 = -1$ کە ئەمەش لە ژمارەی ڕاستەقینەدا ناکرێت، بۆیە یەکتربڕینی نییە.
+            </div>
         </div>
 
         <!-- Q9 -->
         <div class="question">
-            <div class="question-title">٩. ئەگەر $f(x) = \vert{}x - 2\vert{}$ بێت، ئەوا داتاشراوی نەخشەکە $f'(2)$ بریتییە لە:</div>
+            <div class="question-title">٩. (هاوجێبوون) نەخشەی $f(x) = x^3 - 4x$ ڕاستییەکەی بەم شێوەیەیە:</div>
             <div class="options">
-                <label><input type="radio" name="q9" value="A"> A) $1$</label>
-                <label><input type="radio" name="q9" value="B"> B) $-1$</label>
-                <label><input type="radio" name="q9" value="C"> C) $0$</label>
-                <label><input type="radio" name="q9" value="D"> D) بوونی نییە (سۆنگە دەکات)</label>
+                <label><input type="radio" name="q9" value="A"> A) نەخشەی جووتە و هاوجێیە بە دەوری $y$</label>
+                <label><input type="radio" name="q9" value="B"> B) نەخشەی تاکە و هاوجێیە بە دەوری خاڵی بنەڕەت $(0,0)$</label>
+                <label><input type="radio" name="q9" value="C"> C) نە هاوجێیە و نە ناهاوجێ</label>
+                <label><input type="radio" name="q9" value="D"> D) هاوجێیە بە دەوری تەوەری $x$</label>
             </div>
-            <div class="solution" id="sol-q9">💡 <b>شیکاری:</b> لە خاڵی $x=2$ گوێچکەیەکی تیژ (Corner Point) دروست دەبێت، بۆیە داتاشراوی چەپ و ڕاست وەک یەک نین و $f'(2)$ بوونی نییە.</div>
+            <button type="button" class="btn-next" onclick="toggleSolution('q9')">دواتر (بینینی شیکار و وەڵام)</button>
+            <div class="solution" id="sol-q9">
+                <div class="correct-ans">✅ وەڵامی ڕاست: B) نەخشەی تاکە و هاوجێیە بە دەوری خاڵی بنەڕەت $(0,0)$</div>
+                💡 <b>شیکاری:</b> $f(-x) = (-x)^3 - 4(-x) = -x^3 + 4x = -(x^3 - 4x) = -f(x)$. بەمەش نەخشەکە تاکە و هاوجێیە بە دەوری بنەڕەت.
+            </div>
         </div>
 
         <!-- Q10 -->
         <div class="question">
-            <div class="question-title">١٠. بەهای سنووری $\lim_{x \to \infty} \frac{3x^3 - 5x}{2x^3 + 100}$ بریتییە لە:</div>
+            <div class="question-title">١٠. (کێشانی وێنە و دۆزینەوەی خاڵ) سەرکەوانەی نەخشەی دووجای $f(x) = 2(x - 1)^2 + 3$ بریتییە لە چ خاڵێک؟</div>
             <div class="options">
-                <label><input type="radio" name="q10" value="A"> A) $\frac{3}{2}$</label>
-                <label><input type="radio" name="q10" value="B"> B) $0$</label>
-                <label><input type="radio" name="q10" value="C"> C) $\infty$</label>
-                <label><input type="radio" name="q10" value="D"> D) $-\frac{1}{20}$</label>
+                <label><input type="radio" name="q10" value="A"> A) $(-1, 3)$</label>
+                <label><input type="radio" name="q10" value="B"> B) $(1, 3)$</label>
+                <label><input type="radio" name="q10" value="C"> C) $(1, -3)$</label>
+                <label><input type="radio" name="q10" value="D"> D) $(2, 3)$</label>
             </div>
-            <div class="solution" id="sol-q10">💡 <b>شیکاری:</b> چونکە بەرزترین تواناکانی سەرەوە و خوارەوە یەکسانن ($x^3$)، سنوورەکە یەکسانە بە ڕێژەی هاوبەشەکانیان: $\frac{3}{2}$.</div>
+            <button type="button" class="btn-next" onclick="toggleSolution('q10')">دواتر (بینینی شیکار و وەڵام)</button>
+            <div class="solution" id="sol-q10">
+                <div class="correct-ans">✅ وەڵامی ڕاست: B) $(1, 3)$</div>
+                💡 <b>شیکاری:</b> لە شێوەی گشتی $f(x) = a(x - h)^2 + k$ خاڵی سەرکەوانە بریتییە لە $(h, k)$. لێرەدا $h = 1$ و $k = 3$ ەیە، کەواتە سەرکەوانەکە $(1, 3)$ ەیە.
+            </div>
         </div>
 
-        <button type="button" class="btn-submit" onclick="checkAnswers()">پشکنینی وەڵامەکان و بینینی ئەنجام</button>
+        <button type="button" class="btn-finish" onclick="calculateScore()">کۆتایی هێنان بە تاقیکردنەوە و ئەژمارکردنی نمرە</button>
     </form>
 </div>
 
 <script>
-function checkAnswers() {
+function toggleSolution(qId) {
+    let sol = document.getElementById(`sol-${qId}`);
+    if (sol.style.display === 'block') {
+        sol.style.display = 'none';
+    } else {
+        sol.style.display = 'block';
+        if (window.MathJax) {
+            MathJax.typesetPromise();
+        }
+    }
+}
+
+function calculateScore() {
     const correctAnswers = {
         q1: 'B',
         q2: 'B',
-        q3: 'C',
-        q4: 'A',
-        q5: 'A',
-        q6: 'B',
-        q7: 'A',
-        q8: 'C',
-        q9: 'D',
-        q10: 'A'
+        q3: 'A',
+        q4: 'B',
+        q5: 'C',
+        q6: 'A',
+        q7: 'B',
+        q8: 'D',
+        q9: 'B',
+        q10: 'B'
     };
 
     let score = 0;
@@ -256,7 +345,7 @@ function checkAnswers() {
         let selected = document.querySelector(`input[name="${qName}"]:checked`);
         let solBox = document.getElementById(`sol-${qName}`);
         
-        // Display solution
+        // Always show all solutions on finish
         solBox.style.display = 'block';
 
         if (selected && selected.value === correctAnswers[qName]) {
@@ -266,14 +355,12 @@ function checkAnswers() {
 
     let resultBox = document.getElementById('result-box');
     resultBox.style.display = 'block';
-    resultBox.innerHTML = `نمرەکەت: ${score} لە ${total} <br>` + (score >= 5 ? "🎉 دەستت خۆش بێت! ئاستت زۆر باشە." : "⚠️ پێویستت بە ڕاهێنانی زیاترە لەسەر ئەم بابەتانە.");
+    resultBox.innerHTML = `نمرەکەت: ${score} لە ${total} <br>` + (score >= 5 ? "🎉 دەستت خۆش بێت! ئاستت زۆر باشە لە بەشی یەک." : "⚠️ پێویستت بە ڕاهێنانی زیاترە لەسەر بەشی یەک.");
     
-    // Refresh MathJax rendering inside solutions
     if (window.MathJax) {
         MathJax.typesetPromise();
     }
 
-    // Scroll to top to see score
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 </script>
